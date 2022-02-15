@@ -1,15 +1,19 @@
 language: go
 
 go:
-  - 1.12.x
+  - 1.15.x
+  - 1.16.x
+  - 1.17.x
 
 # Note: If you're working inside $GOPATH/src, go modules are disabled by default and can be enabled by setting GO111MODULE=on.
 env:
   GO111MODULE=on
 
+# 安装依赖
 install:
   - go mod download
 
+# 用来指定构建或测试脚本
 script:
   - go test -v ./...
   - GOOS=windows GOARCH=amd64 go build -o music-get.exe
@@ -21,8 +25,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key:
-    secure: IScGxmZ+b6J2awD7XzcVgEQEEmXrFksVbBQOQBrnJMCj8UnC5pIolQgzcueJfmpNLfewzwWh6PJAaQUYt9tAwfN/yzmhaaHcdieurCEQ1nA9CLn7/AWWrUxXvjMVgyHuSMTn+9QLslR0day3a8mhx5za6uAFF+ZDt4Vcqjl+FOuiS1+Zw7E99Z2i9HAxJJTEWVTJfezIwYyqcwvZRWoQ+f499WywIg3NZdPPKmuDs0rL4BfcQkndJhHSrLfvMDYYQLyBkoLVmM0QL+y7rNTmRfjBTWcmUHyj/4v0fsixAXGJMEanjGNAlrQBYlzTyEPGqK1AeU1s5uwqVTccBpOlTsrSh466g+vT7PyASh4t1/fA+wJsZ0sQmeyOyx9ZyzaCjh2yaF8Od4k/bhHD89Zl7YzHu4HF6xc4N1uPB8n8QvEclgZ9SdsFtwPzQk4P6doDBjlEh27vIvrvYaif91qfOSQ+L9wV41LbJdI76qRH1nhizYYQUE7pymX+EO8no0Vh9ZjfINDDJ9ax8UgsNOR4shebnhfiOOmq4qTD/iTd927iYLBKtkcTW33EgV0qL5hYz1/T6Q2spjhSGw/UCTm4z7DiJqZvV3GQm+ASLrdfiCpepSRy56H3u5DU47TcII1ceXQp7iZnZGtZToBAcntAHHYLWaIjvMwq1MEb8gB5wOs=
+  api_key: $API_KEY
   file:
     - music-get_windows_amd64.zip
     - music-get_linux_amd64.zip
