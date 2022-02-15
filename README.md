@@ -1,7 +1,6 @@
 # Music-Get
 
-[![Build Status](https://app.travis-ci.com/sreio/music-get.svg?branch=master)](https://travis-ci.org/sreio/music-get)
-[![golang.org](https://img.shields.io/github/go-mod/go-version/sreio/music-get)](https://golang.org)
+[![Build Status](https://app.travis-ci.com/sreio/music-get.svg?branch=master)](https://app.travis-ci.com/sreio/music-get)
 [![Latest Release](https://img.shields.io/github/release/winterssy/music-get.svg)](https://github.com/sreio/music-get/releases)
 [![License GPL-3.0](https://img.shields.io/github/license/winterssy/music-get.svg)](/LICENSE)
 
