@@ -15,7 +15,7 @@ install:
 
 # 用来指定构建或测试脚本
 script:
-  - go test -v ./...
+  # - go test -v ./...
   - GOOS=windows GOARCH=amd64 go build -o music-get.exe
   - GOOS=linux GOARCH=amd64 go build -o music-get
 
@@ -25,7 +25,7 @@ before_deploy:
 
 deploy:
   provider: releases
-  api_key: $API_KEY
+  api_key: ${{ API_KEY }}
   file:
     - music-get_windows_amd64.zip
     - music-get_linux_amd64.zip
