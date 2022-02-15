@@ -103,6 +103,10 @@ func (m *MP3) UpdateTag(wg *sync.WaitGroup) {
 }
 
 func (m *MP3) SingleDownload() error {
+	err := os.Chmod(MP3DownloadDir, 0775)
+	if err != nil {
+		return err
+	}
 	m.SavePath = filepath.Join(MP3DownloadDir, m.SavePath)
 	if err := utils.BuildPathIfNotExist(m.SavePath); err != nil {
 		return err
@@ -115,6 +119,7 @@ func (m *MP3) SingleDownload() error {
 	defer resp.Body.Close()
 
 	fPath := filepath.Join(m.SavePath, m.FileName)
+	os.Chmod(m.SavePath, 0775)
 	f, err := os.Create(fPath)
 	if err != nil {
 		return err
@@ -153,7 +158,7 @@ func (m *MP3) ConcurrentDownload(taskList chan DownloadTask, taskQueue chan stru
 	}()
 
 	if !m.Playable {
-		logger.Info.Printf("Ignore no coypright music: %s", m.Tag.Title)
+		logger.Info.Printf("Ignore no copyright music: %s", m.Tag.Title)
 		task.Status = DownloadNoCopyrightError
 		return
 	}
